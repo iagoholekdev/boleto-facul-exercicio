@@ -26,7 +26,7 @@ public class Boleto {
         return this.valorPago;
     }
 
-    public boolean isVencido() {
+    public boolean getVencido() {
         return this.vencido;
     }
 
