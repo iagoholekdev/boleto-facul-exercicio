@@ -3,7 +3,7 @@ import org.projetoFacul.models.Boleto;
 import org.projetoFacul.validators.ValidateBoleto;
 import org.projetoFacul.services.BoletoService;
 
-public class BoletoController {
+public class BoletoController implements IBoletoController {
     public String boletoController(Boleto boleto){
         ValidateBoleto validator = new ValidateBoleto();
         if (!validator.addBoleto(boleto).validateBoleto().isEmpty()) {

@@ -1,5 +1,4 @@
 package org.projetoFacul.services;
-import org.projetoFacul.services.IBoletoService;
 import org.projetoFacul.models.Boleto;
 
 public class BoletoService implements IBoletoService{
