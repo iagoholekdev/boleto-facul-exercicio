@@ -5,6 +5,11 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import org.projetoFacul.models.Boleto;
+
+import java.util.HashMap;
+import java.util.Map;
+
+
 import org.projetoFacul.controller.BoletoController;
 
 /**
@@ -39,24 +44,22 @@ public class AppTest
         assertTrue( true );
     }
 
-    String makeTest(Boleto boleto, double valor, double valorBoleto, boolean vencido){
-
-        boleto
-                .setValorBoleto(valorBoleto)
-                .setValorPago(valor)
-                .setVencido(vencido);
+    String makeTest(double valor, double valorBoleto, boolean vencido){
+        Map<String, Object> boleto = new HashMap<>();  
+        boleto.put("valorBoleto", valorBoleto);
+        boleto.put("valorPago", valor);
+        boleto.put("vencido", vencido);
         BoletoController boletoController = new BoletoController();
         return (boletoController.boletoController(boleto));
     }
-    public void testMain() {
-        Boleto boleto = new Boleto();
-        Assert.assertEquals( "Valor do boleto é invalido!", makeTest(boleto,100, -100, true));
-        Assert.assertEquals( "Valor do boleto é invalido!", makeTest(boleto,100, 0, true) );
-        Assert.assertEquals("Valor pago é inválido!", makeTest(boleto,0, 100, true));
-        Assert.assertEquals("Valor pago é maior que o valor do boleto!", makeTest(boleto,200, 100, true) );
-        Assert.assertEquals("Boleto já passou da data de pagamento!", makeTest(boleto,100, 100, true));
-        Assert.assertEquals("Boleto quitado, você pagou o valor total!", makeTest(boleto,100, 100, false));
-        Assert.assertEquals("Boleto pago parcialmente, valor restante 50.00", makeTest(boleto,50, 100, false));
+    public void testMain() {        
+        Assert.assertEquals( "Valor do boleto é invalido!", makeTest(100, -100, true));
+        Assert.assertEquals( "Valor do boleto é invalido!", makeTest(100, 0, true) );
+        Assert.assertEquals("Valor pago é inválido!", makeTest(0, 100, true));
+        Assert.assertEquals("Valor pago é maior que o valor do boleto!", makeTest(200, 100, true) );
+        Assert.assertEquals("Boleto já passou da data de pagamento!", makeTest(100, 100, true));
+        Assert.assertEquals("Boleto quitado, você pagou o valor total!", makeTest(100, 100, false));
+        Assert.assertEquals("Boleto pago parcialmente, valor restante 50.00", makeTest(50, 100, false));
 
     }
 

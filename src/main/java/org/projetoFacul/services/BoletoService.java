@@ -1,16 +1,27 @@
 package org.projetoFacul.services;
+import java.util.Map;
+
 import org.projetoFacul.models.Boleto;
 
 public class BoletoService implements IBoletoService{
-    private Boleto boleto;
-    public IBoletoService addBoleto(Boleto boleto) {
+    private Map<String, Object> boleto;
+    private Boleto boletoModel;
+    public IBoletoService addBoleto(Map<String, Object> boleto) {
         this.boleto = boleto;
         return this;
-
+    }
+    public IBoletoService createBoleto() {
+        Boleto boleto = new Boleto();
+        boleto
+              .setValorBoleto((double) this.boleto.get("valorBoleto"))
+              .setVencido((boolean) this.boleto.get("vencido"))
+              .setValorPago((double) this.boleto.get("valorPago"));
+        this.boletoModel = boleto;
+        return this;
     }
 
-    public String createBoleto() {
-      double value = boleto.getValorBoleto() - boleto.getValorPago();
+    public String pagar() {
+      double value = boletoModel.getValorBoleto() - boletoModel.getValorPago();
       if (value == 0) {
         return "Boleto quitado, você pagou o valor total!";
       }

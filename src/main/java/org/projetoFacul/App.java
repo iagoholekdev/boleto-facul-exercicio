@@ -1,5 +1,9 @@
 package org.projetoFacul;
 import org.projetoFacul.models.Boleto;
+
+import java.util.HashMap;
+
+import java.util.Map;
 import java.util.Scanner;
 import org.projetoFacul.controller.BoletoController;
 
@@ -16,24 +20,32 @@ public class App
           System.out.println("Digite o valor do boleto");
           double valorBoleto = scanner.nextDouble();
           System.out.println("Quanto você deseja pagar?");
-          double valorPago = scanner.nextDouble();
-
-          Boleto boleto = alimentaBoleto(valorPago, valorBoleto);
-          System.out.println(boleto);
-
+          double valorPago = scanner.nextDouble();         
+          Map<String, Object> boletoInfo = alimentaBoleto(valorPago, valorBoleto);         
           BoletoController boletoController = new BoletoController();
-          System.out.println(boletoController.boletoController(boleto));
+          showBoletoInfo(boletoInfo);
+          System.out.println(boletoController.boletoController(boletoInfo));
+          scanner.close();   
         } catch (Exception e) {
            System.out.println("Ocorreu um erro! Motivo: " + e.getMessage());
         }
     }
 
-    public static Boleto alimentaBoleto(double valor, double valorBoleto) {
-        Boleto boleto = new Boleto();
-        return boleto
-                .setValorBoleto(valorBoleto)
-                .setValorPago(valor)
-                .setVencido(false);
+    public static Map<String, Object> alimentaBoleto(double valor, double valorBoleto) {
+        Map<String, Object> boletoInfo = new HashMap<>();
+        boletoInfo.put("valorBoleto", valorBoleto);
+        boletoInfo.put("valorPago", valor);
+        boletoInfo.put("vencido", false);
+        return boletoInfo;
+    }
+
+    public static void showBoletoInfo(Map<String, Object> boleto) {
+        boolean valorVencido = (boolean) boleto.get("vencido");      
+        String vencidoString = valorVencido ? "Sim" : "Não";
+        System.out.println("Valor do boleto: " + boleto.get("valorBoleto") + "\n" +
+                           "Valor pago: " + boleto.get("valorPago") + "\n" +
+                           "Vencido: " + vencidoString);    
+
     }
 
 }

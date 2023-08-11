@@ -1,7 +1,8 @@
 package org.projetoFacul.services;
-import org.projetoFacul.models.Boleto;
+import java.util.Map;
 
 public interface IBoletoService {
-    IBoletoService addBoleto(Boleto boleto);
-    String createBoleto();
+    IBoletoService addBoleto(Map<String, Object> boleto);
+    IBoletoService createBoleto();
+    String pagar();
 }

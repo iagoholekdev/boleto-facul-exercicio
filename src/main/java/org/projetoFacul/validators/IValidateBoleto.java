@@ -1,7 +1,7 @@
 package org.projetoFacul.validators;
-import org.projetoFacul.models.Boleto;
+import java.util.Map;
 
 public interface IValidateBoleto {
     String validateBoleto();
-    IValidateBoleto addBoleto(Boleto boleto);
+    IValidateBoleto addBoleto(Map<String, Object> boleto);
 }
