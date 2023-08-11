@@ -50,9 +50,9 @@ public class AppTest
     }
     public void testMain() {
         Boleto boleto = new Boleto();
-        Assert.assertEquals( "Valor do boleto inconsistente!", makeTest(boleto,100, -100, true));
-        Assert.assertEquals( "Valor do boleto inconsistente!", makeTest(boleto,100, 0, true) );
-        Assert.assertEquals("Valor pago é zero!", makeTest(boleto,0, 100, true));
+        Assert.assertEquals( "Valor do boleto é invalido!", makeTest(boleto,100, -100, true));
+        Assert.assertEquals( "Valor do boleto é invalido!", makeTest(boleto,100, 0, true) );
+        Assert.assertEquals("Valor pago é inválido!", makeTest(boleto,0, 100, true));
         Assert.assertEquals("Valor pago é maior que o valor do boleto!", makeTest(boleto,200, 100, true) );
         Assert.assertEquals("Boleto já passou da data de pagamento!", makeTest(boleto,100, 100, true));
         Assert.assertEquals("Boleto quitado, você pagou o valor total!", makeTest(boleto,100, 100, false));
