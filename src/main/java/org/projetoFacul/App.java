@@ -25,6 +25,8 @@ public class App
           Map<String, Object> boletoInfo = alimentaBoleto(valorPago, valorBoleto);   
           showBoletoInfo(boletoInfo); 
 
+          System.out.println("Iniciando validação do boleto...");
+          
           BoletoController boletoController = new BoletoController();
           System.out.println(boletoController.boletoController(boletoInfo));
 

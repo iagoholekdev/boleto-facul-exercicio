@@ -9,7 +9,7 @@ public class ValidateBoleto implements IValidateBoleto {
       double valorBoleto = ((Number)  boleto.get("valorBoleto")).doubleValue();     
       boolean vencido = (boolean) boleto.get("vencido");
       double valorPago = ((Number) boleto.get("valorPago")).doubleValue();
-      
+      System.out.println("Validando boleto...");
       if (valorBoleto <= 0 ) {
           return "Valor do boleto é invalido!";
         }
@@ -25,7 +25,7 @@ public class ValidateBoleto implements IValidateBoleto {
       if (vencido) {
           return "Boleto já passou da data de pagamento!";
         }
-
+      System.out.println("Dados válidados!");
       return "";
     }
 

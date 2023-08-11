@@ -10,7 +10,8 @@ public class BoletoService implements IBoletoService{
         this.boleto = boleto;
         return this;
     }
-    public IBoletoService createBoleto() {
+    public IBoletoService createBoleto() {    
+        System.out.println("Criando o boleto...");
         Boleto boleto = new Boleto();
         boleto
               .setValorBoleto((double) this.boleto.get("valorBoleto"))
@@ -21,6 +22,7 @@ public class BoletoService implements IBoletoService{
     }
 
     public String pagar() {
+      System.out.println("Iniciando o pagamento!");
       double value = boletoModel.getValorBoleto() - boletoModel.getValorPago();
       if (value == 0) {
         return "Boleto quitado, você pagou o valor total!";
