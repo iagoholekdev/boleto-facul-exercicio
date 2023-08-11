@@ -17,14 +17,18 @@ public class App
     {
         try {
           Scanner scanner = new Scanner(System.in);
+
           System.out.println("Digite o valor do boleto");
           double valorBoleto = scanner.nextDouble();
           System.out.println("Quanto você deseja pagar?");
-          double valorPago = scanner.nextDouble();         
-          Map<String, Object> boletoInfo = alimentaBoleto(valorPago, valorBoleto);         
+          double valorPago = scanner.nextDouble();    
+
+          Map<String, Object> boletoInfo = alimentaBoleto(valorPago, valorBoleto);   
+          showBoletoInfo(boletoInfo); 
+
           BoletoController boletoController = new BoletoController();
-          showBoletoInfo(boletoInfo);
           System.out.println(boletoController.boletoController(boletoInfo));
+
           scanner.close();   
         } catch (Exception e) {
            System.out.println("Ocorreu um erro! Motivo: " + e.getMessage());
