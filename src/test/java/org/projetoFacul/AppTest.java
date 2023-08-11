@@ -59,7 +59,7 @@ public class AppTest
         Assert.assertEquals("Valor pago é maior que o valor do boleto!", makeTest(200, 100, true) );
         Assert.assertEquals("Boleto já passou da data de pagamento!", makeTest(100, 100, true));
         Assert.assertEquals("Boleto quitado, você pagou o valor total!", makeTest(100, 100, false));
-        Assert.assertEquals("Boleto pago parcialmente, valor restante 50.00", makeTest(50, 100, false));
+        Assert.assertEquals("Boleto pago parcialmente, valor restante 50,00", makeTest(50, 100, false));
 
     }
 
