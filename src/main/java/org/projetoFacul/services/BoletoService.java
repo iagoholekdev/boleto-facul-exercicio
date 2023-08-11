@@ -2,7 +2,13 @@ package org.projetoFacul.services;
 import java.util.Map;
 
 import org.projetoFacul.models.Boleto;
-
+import org.projetoFacul.resources.ResourceString;
+/**
+ * Classe service, responsável por criar o boleto e realizar o pagamento do mesmo.
+ * @author iagoholekdev
+ * @since 11/08/2023
+ * @version 1.0
+ */
 public class BoletoService implements IBoletoService{
     private Map<String, Object> boleto;
     private Boleto boletoModel;
@@ -11,7 +17,7 @@ public class BoletoService implements IBoletoService{
         return this;
     }
     public IBoletoService createBoleto() {    
-        System.out.println("Criando o boleto...");
+        System.out.println(ResourceString.getCriandoBoleto());
         Boleto boleto = new Boleto();
         boleto
               .setValorBoleto((double) this.boleto.get("valorBoleto"))
@@ -22,12 +28,12 @@ public class BoletoService implements IBoletoService{
     }
 
     public String pagar() {
-      System.out.println("Iniciando o pagamento!");
+      System.out.println(ResourceString.getIniciandoPagamento());
       double value = boletoModel.getValorBoleto() - boletoModel.getValorPago();
-      if (value == 0) {
-        return "Boleto quitado, você pagou o valor total!";
+      if (value == ResourceString.getValorZero()) {
+        return ResourceString.getBoletoQuitado();
       }
-      return String.format("Boleto pago parcialmente, valor restante %.2f", value);
+      return String.format(ResourceString.getBoletoPagoParcialmente(), value);
 
 
     }

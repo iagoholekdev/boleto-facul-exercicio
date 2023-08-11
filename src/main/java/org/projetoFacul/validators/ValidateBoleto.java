@@ -1,8 +1,14 @@
 package org.projetoFacul.validators;
+import org.projetoFacul.resources.ResourceString;
 
 import java.util.Map;
 
-
+/**
+ * Classe responsável pela validação do boleto
+ * @author iagoholekdev
+ * @since 11/08/2023
+ * @version 1.0
+ */
 public class ValidateBoleto implements IValidateBoleto {
     private Map<String, Object> boleto;
     public String validateBoleto(){
@@ -10,23 +16,23 @@ public class ValidateBoleto implements IValidateBoleto {
       boolean vencido = (boolean) boleto.get("vencido");
       double valorPago = ((Number) boleto.get("valorPago")).doubleValue();
       System.out.println("Validando boleto...");
-      if (valorBoleto <= 0 ) {
-          return "Valor do boleto é invalido!";
+      if (valorBoleto <= ResourceString.getValorZero() ) {
+          return ResourceString.getValidacaoValorBoleto();
         }
 
-      if (valorPago <= 0 ) {
-            return "Valor pago é inválido!";
-        }
+      if (valorPago <= ResourceString.getValorZero() ) {
+        return ResourceString.getValidacaoValorPago();
+      }
 
       if (valorPago > valorBoleto){
-          return "Valor pago é maior que o valor do boleto!";
+          return ResourceString.getValidacaoValorPagoMaior();
         }
 
       if (vencido) {
-          return "Boleto já passou da data de pagamento!";
+          return ResourceString.getValidacaoVencido();
         }
-      System.out.println("Dados válidados!");
-      return "";
+      System.out.println(ResourceString.getValidacaoSucesso());
+      return ResourceString.getEmptyString();
     }
 
     public IValidateBoleto addBoleto(Map<String, Object> boleto) {

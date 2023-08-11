@@ -1,5 +1,11 @@
 package org.projetoFacul.enums;
 
+
+/**
+ * @author iagoholekdev
+ * @since 11/08/2023
+ * @version 1.0
+ */
 public class BoletoEnumerator {
     public enum BoletoEnum {
         VALOR_BOLETO("valorBoleto"),
