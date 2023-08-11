@@ -6,12 +6,10 @@ import java.util.Map;
 public class ValidateBoleto implements IValidateBoleto {
     private Map<String, Object> boleto;
     public String validateBoleto(){
-      Object valorObjeto = boleto.get("valorBoleto");
-      double valorBoleto = ((Number) valorObjeto).doubleValue();
-      Object vencidoObjeto = boleto.get("vencido");
-      boolean vencido = (boolean) vencidoObjeto;
-      Object valorPagoObjeto = boleto.get("valorPago");
-      double valorPago = ((Number) valorPagoObjeto).doubleValue();
+      double valorBoleto = ((Number)  boleto.get("valorBoleto")).doubleValue();     
+      boolean vencido = (boolean) boleto.get("vencido");
+      double valorPago = ((Number) boleto.get("valorPago")).doubleValue();
+      
       if (valorBoleto <= 0 ) {
           return "Valor do boleto é invalido!";
         }
