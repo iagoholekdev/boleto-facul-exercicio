@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import org.projetoFacul.controller.BoletoController;
-
+import org.projetoFacul.enums.BoletoEnumerator.BoletoEnum;
 /**
  * @author iagoholekdev
  * Classe main para execução do programa
@@ -38,9 +38,9 @@ public class App
 
     public static Map<String, Object> alimentaBoleto(double valor, double valorBoleto) {
         Map<String, Object> boletoInfo = new HashMap<>();
-        boletoInfo.put("valorBoleto", valorBoleto);
-        boletoInfo.put("valorPago", valor);
-        boletoInfo.put("vencido", false);
+        boletoInfo.put(BoletoEnum.VALOR_BOLETO.getValue(), valorBoleto);
+        boletoInfo.put(BoletoEnum.VALOR_PAGO.getValue(), valor);
+        boletoInfo.put(BoletoEnum.VENCIDO.getValue(), false);
         return boletoInfo;
     }
 
