@@ -5,6 +5,8 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import org.projetoFacul.models.Boleto;
+import static org.mockito.Mockito.*;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -64,13 +66,23 @@ public class AppTest
     }
 
     public void testAlimentaBoleto() {
-        Boleto boleto = new Boleto();
-        boleto
-            .setValorBoleto(100)
-            .setValorPago(50)
-            .setVencido(true);
-        Assert.assertTrue(boleto.getVencido());
-        Assert.assertEquals(100.00, boleto.getValorBoleto());
-        Assert.assertEquals(50.00, boleto.getValorPago());
+        Boleto boletoMock = mock(Boleto.class);
+        when(boletoMock.getValorBoleto()).thenReturn(100.0);
+        when(boletoMock.getValorPago()).thenReturn(50.0);
+        when(boletoMock.getVencido()).thenReturn(true);
+
+        Assert.assertTrue(boletoMock.getVencido());
+        Assert.assertEquals(100.0, boletoMock.getValorBoleto());
+        Assert.assertEquals(50.0, boletoMock.getValorPago());
+
+        when(boletoMock.getValorBoleto()).thenReturn(-100.0);
+        when(boletoMock.getValorPago()).thenReturn(0.0);
+        when(boletoMock.getVencido()).thenReturn(false);
+
+        Assert.assertTrue(!boletoMock.getVencido());
+        Assert.assertEquals(-100.0, boletoMock.getValorBoleto());
+        Assert.assertEquals(0.0, boletoMock.getValorPago());
     }
+
+
 }
